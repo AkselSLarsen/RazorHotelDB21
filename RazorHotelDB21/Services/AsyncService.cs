@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace RazorHotelDB21.Services {
     public abstract class AsyncService<T> : IAsyncService<T> {
 
+        #error requires a database connection string
         /// <summary>
         /// The connection address to the underlying relational database in string format.
         /// </summary>
-        protected static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HotelDbtest2;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        protected static string connectionString = "";
         /// <summary>
         /// The name of the table in the relational database in string format.
         /// </summary>
