@@ -1,0 +1,65 @@
+﻿@page
+@model RazorHotelDB21.Pages.Hotels.IndexModel
+@{
+}
+
+<p>
+    <a asp-page="/Hotels/Create">Create new hotel</a>
+</p>
+
+<form>
+    <p>
+        Search: <input type="text" asp-for="FilterCriteria" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<h4 style="color:aquamarine"> List of hotels</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Hotel No
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Hotels.Count() != 0) {
+            @foreach (var item in Model.Hotels) {
+                <tr>
+                    <td>
+                        @item.Hotel_No
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Rooms/Index" asp-route-id="@item.Hotel_No">Rooms in hotel</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Rooms/Create" asp-route-id="@item.Hotel_No">Create new room</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Hotels/Edit" asp-route-id="@item.Hotel_No">Edit hotel</a>
+                        </p>
+                    </td>
+                </tr>
+            }
+        }
+</table>

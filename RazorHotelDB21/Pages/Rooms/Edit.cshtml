@@ -1,0 +1,94 @@
+﻿@page
+@using RazorHotelDB21.Model;
+@model RazorHotelDB21.Pages.Rooms.EditModel
+@{
+}
+
+<h1>Edit Hotel</h1>
+
+<h2>Old Values</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label asp-for="@Model.OldRoom_No" class="custom-control-label"></label>
+            <h5>@Model.OldRoom_No</h5>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.OldHotel_No" class="custom-control-label"></label>
+            <h5>@Model.OldHotel_No</h5>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.OldTypes" class="custom-control-label"></label>
+            <h5>@Model.OldTypes</h5>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.OldPrice" class="custom-control-label"></label>
+            <h5>@Model.OldPrice</h5>
+
+        </div>
+    </div>
+</div>
+
+
+<h1 class="alert-danger">@Model.Error</h1>
+
+<h2>New Values</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-page-handler="Edit">
+            <div class="form-group">
+                <label asp-for="@Model.NewRoom_No" class="custom-control-label"></label>
+                <input asp-for="@Model.NewRoom_No" class="form-control" />
+                <input asp-for="@Model.OldRoom_No" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.NewHotel_No" class="custom-control-label"></label>
+                <input asp-for="@Model.NewHotel_No" class="form-control" />
+                <input asp-for="@Model.OldHotel_No" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.NewTypes" class="custom-control-label"></label>
+                <select asp-for="@Model.NewTypes" class="form-control">
+                    <option value="@RoomTypes.S">Single</option>
+                    <option value="@RoomTypes.D">Double</option>
+                    <option value="@RoomTypes.F">Familie</option>
+                </select>
+                <input asp-for="@Model.OldTypes" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.NewPrice" class="custom-control-label"></label>
+                <input asp-for="@Model.NewPrice" class="form-control" />
+                <input asp-for="@Model.OldPrice" type="hidden" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<form method="post" asp-page-handler="Delete">
+    <div class="form-group">
+        <input asp-for="@Model.OldRoom_No" type="hidden" />
+    </div>
+    <div class="form-group">
+        <input asp-for="@Model.OldHotel_No" type="hidden" />
+    </div>
+    <div class="form-group">
+        <input asp-for="@Model.OldTypes" type="hidden" />
+    </div>
+    <div class="form-group">
+        <input asp-for="@Model.OldPrice" type="hidden" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+</form>
+
+<div>
+    <a asp-page="Index">Back to list</a>
+</div>

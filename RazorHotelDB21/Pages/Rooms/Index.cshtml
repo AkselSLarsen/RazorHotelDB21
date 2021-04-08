@@ -1,0 +1,74 @@
+﻿@page
+@using RazorHotelDB21.Model;
+@model RazorHotelDB21.Pages.Rooms.IndexModel
+@{
+}
+
+<p>
+    <a asp-page="/Hotels/Index">Back to hotels</a>
+</p>
+
+<p>
+    <a asp-page="/Rooms/Create" asp-route-id="@Model.Hotel_No">Create new room</a>
+</p>
+
+<form method="post" asp-page-handler="Sort">
+    <input asp-for="@Model.Hotel_No" type="hidden" />
+
+    <label>Filter by room type</label>
+    <select asp-for="@Model.Show" class="form-control">
+        <option value="">All</option>
+        <option value="S">Single rooms</option>
+        <option value="D">Double rooms</option>
+        <option value="F">Familie rooms</option>
+    </select>
+
+    <label>Sort by</label>
+    <select asp-for="@Model.SortBy" class="form-control">
+        <option value="Room_No">Room number</option>
+        <option value="Price">Price</option>
+    </select>
+    <div class="form-group">
+        <input type="submit" value="Sort" class="btn btn-danger" />
+    </div>
+</form>
+
+<h4 style="color:aquamarine"> List of rooms for @Model.Name</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Room No
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Price
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Rooms.Count() != 0) {
+            @foreach (var item in Model.Rooms) {
+                <tr>
+                    <td>
+                        @item.Room_No
+                    </td>
+                    <td>
+                        @item.Types.ToString()
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        <p>
+                            <a asp-page="/Rooms/Edit" asp-route-id="@(item.Room_No + "-" + item.Hotel_No)">Edit</a>
+                        </p>
+                    </td>
+                </tr>
+            }
+        }
+</table>
